@@ -1,0 +1,111 @@
+
+<div class="my-container">
+    <ng-template #customLoadingTemplate>
+       
+    </ng-template>
+  
+    <ngx-loading [show]="loading" [config]="{ backdropBorderRadius: '3px' }" [template]="customLoadingTemplate"></ngx-loading>
+    
+  </div>
+  <div class="right_col pt-5 container text-center m-auto  " role="main">
+      <div class="">
+  <div class="x_content"></div>
+  
+      <h2 class="text-info p-4" >Allow </h2>
+  
+      <div class="table-responsive">
+        <table class="table table-striped jambo_table bulk_action">
+          <thead>
+            <tr class="headings">
+              <th>
+                <input type="checkbox" id="check-all" class="flat">
+              </th>
+              <th class="column-title">Name </th>
+              
+              <th class="column-title">Phone </th>
+              <th class="column-title">National ID </th>
+              <th class="column-title">Address </th>
+              <th class="column-title">Date </th>
+              <th class="column-title">Gender </th>
+              <th class="column-title">Documents </th>
+              <th class="column-title">---- </th>
+            </tr>
+          </thead>
+  
+          <tbody>
+            <tr *ngFor="let f of this.Allow" class="even pointer">
+            <td class="a-center ">
+              <input type="checkbox" class="flat" name="table_records">
+            </td>
+            <td class=" ">{{f.name}}</td>
+            <td class=" ">{{f.phone}}</td>
+            <td class=" ">{{f.nationalId}}</td>
+            <td class=" ">{{f.address}}</td>
+
+            <td class=" ">{{f.date}}</td>
+            <td class=" ">{{f.gender}}</td>
+
+            <td ><a [routerLink]="['/documents',f.id]"> <i class="fas fa-file-image"></i></a></td>
+            <!-- <td class=" ">{{f[0].phone}} <i class="success fa fa-long-arrow-up"></i></td> -->
+            <i (click)="disApprove(f.id)" class="fas fa-user-minus fa-2x text-danger "></i>
+            
+          </tbody>
+        </table>
+      </div>
+              
+      </div>
+      </div>
+          
+    
+  
+  
+      
+  <div class="right_col pt-5 container text-center m-auto  " role="main">
+    <div class="">
+  <div class="x_content"></div>
+  
+    <h2 class="text-info p-4" >Not Allow </h2>
+    <div class="table-responsive">
+      <table class="table table-striped jambo_table bulk_action">
+        <thead>
+          <tr class="headings">
+            <td class="a-center ">
+                <input type="checkbox" class="flat" name="table_records">
+              </td>
+            <th class="column-title">Name </th>
+              <th class="column-title">Phone </th>
+              <th class="column-title">National ID </th>
+              <th class="column-title">Address </th>
+              <th class="column-title">Date </th>
+              <th class="column-title">Gender </th>
+              <th class="column-title">Documents </th>
+            <th class="column-title">---- </th>
+          </tr>
+        </thead>
+  
+        <tbody>
+          <tr *ngFor="let f of this.notAllow" class="even pointer">
+          <td class="a-center ">
+            <input type="checkbox" class="flat" name="table_records">
+          </td>
+          <td class=" ">{{f.name}}</td>
+          <td class=" ">{{f.phone}}</td>
+          <td class=" ">{{f.nationalId}}</td>
+          <td class=" ">{{f.address}}</td>
+
+          <td class=" ">{{f.date}}</td>
+          <td class=" ">{{f.gender}}</td>
+          <td ><a [routerLink]="['/documents',f.id]"> <i class="fas fa-file-image"></i></a></td>
+          <i  (click)="approve(f.id)" class="fas fa-user-plus text-success fa-2x"></i>
+          &nbsp;
+          <i (click)="deleteUser(f.id)" class="fas fa-trash-alt text-danger fa-2x "></i>
+          </tr>
+          
+        </tbody>
+      </table>
+    </div>
+            
+    </div>
+    </div>
+        
+  

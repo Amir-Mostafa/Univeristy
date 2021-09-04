@@ -1,0 +1,126 @@
+
+ 
+<div class="my-container">
+  <ng-template #customLoadingTemplate>
+     
+  </ng-template>
+
+  <ngx-loading [show]="loading" [config]="{ backdropBorderRadius: '3px' }" [template]="customLoadingTemplate"></ngx-loading>
+  
+</div>
+ <div class="full" >
+ <div style="padding-top: 100px;" class="container  my-5 py-5" >
+<h1 class="text-info text-center" >Register Student to University</h1>
+ <div class="all" >
+<mat-horizontal-stepper style="width: 100%" [linear]="isLinear" #stepper>
+  <mat-step [stepControl]="firstFormGroup">
+    <form [formGroup]="firstFormGroup">
+      <ng-template matStepLabel>Basic Details</ng-template>
+      <mat-form-field >
+        <mat-label  >Name</mat-label>
+        <input  matInput placeholder="Name" formControlName="name" required>
+      </mat-form-field>
+      <br/>
+      <mat-form-field >
+        <mat-label  >Phone</mat-label>
+        <input  matInput placeholder="Phone" formControlName="phone" required>
+      </mat-form-field>
+      <br/>
+      <mat-form-field >
+        <mat-label  >National ID</mat-label>
+        <input  matInput placeholder="National ID" formControlName="cardId" required>
+      </mat-form-field>
+      <br/>
+      <mat-form-field >
+        <mat-label  >Address</mat-label>
+        <input  matInput placeholder="Address" formControlName="address" required>
+      </mat-form-field>
+      <br/>
+
+      <mat-form-field >
+        <mat-label  >Date</mat-label>
+        <input type="date" matInput placeholder="date" formControlName="date" required>
+      </mat-form-field>
+      <br/> 
+      
+      <div class="form-group" >
+
+        <mat-label  >Gender</mat-label>
+      <select formControlName="gender" class="form-control" >
+        <option value="0" >Male</option>
+        <option value="1">Female</option>
+      </select>
+    </div>
+    
+    <br/> 
+    
+      
+      
+      <div>
+        <button class="btn btn-success" style="background-color: rgb(19, 197, 138);" mat-button matStepperNext>Next</button>
+      </div>
+    </form>
+  </mat-step>
+  <mat-step [stepControl]="secondFormGroup">
+    <form [formGroup]="secondFormGroup">
+      <ng-template matStepLabel>Documents</ng-template>
+      <div class="form-group">
+         <label>Select birth date image</label>   
+        <input [class.is-valid]="secondFormGroup.get('birth').status=='VALID'" [class.is-invalid]="secondFormGroup.get('birth').errors&&secondFormGroup.get('birth').touched"  placeholder="Enter image" type="file"  image="image"  class=" form-control"  (change)="onFileChangeBirth($event)" #fileInput>
+
+            <div *ngIf="secondFormGroup.get('birth').errors&&secondFormGroup.get('birth').touched" class="alert alert-danger">
+               Select Image
+            </div>
+    </div>
+
+    <div class="form-group">
+            
+      <label>Select National Card ID image</label>   
+      <input  [class.is-valid]="secondFormGroup.get('id').status=='VALID'" [class.is-invalid]="secondFormGroup.get('id').errors&&secondFormGroup.get('id').touched"  placeholder="Enter image" type="file" class="file form-control "  (change)="onFileChangeID($event)" #fileInput>
+
+          <div *ngIf="secondFormGroup.get('id').errors&&secondFormGroup.get('id').touched" class="alert alert-danger">
+            Select Image
+          </div>
+  </div>
+   
+    <!-- <mat-form-field>
+      <ngx-mat-file-input formControlName="birth" placeholder="Basic Input" ></ngx-mat-file-input>
+      <mat-icon matSuffix>folder</mat-icon>
+    </mat-form-field> -->
+
+      <!-- <mat-form-field>
+        <mat-label>Stock</mat-label>
+        <input matInput  formControlName="id" required>
+      </mat-form-field>
+      <br/> -->
+      <div>
+        <button style="background-color: rgb(73, 127, 172);" mat-button matStepperPrevious>Back</button>
+        <button style="background-color: rgb(19, 197, 138);" mat-button matStepperNext>Next</button>
+      </div>
+    </form>
+  </mat-step>
+  <mat-step>
+    <ng-template matStepLabel>Done</ng-template>
+    <p>You are now done.</p>
+  
+    <div class="list" >
+	 <div> <strong>Name:</strong> {{ this.firstFormGroup.value.name }}</div>
+	 <div> <strong>Phone:</strong> {{ this.firstFormGroup.value.phone }}</div>
+   <div> <strong>National ID:</strong> {{ this.firstFormGroup.value.cardId }}</div>
+   <div> <strong>Address:</strong> {{ this.firstFormGroup.value.address }}</div>
+   <div> <strong>Date:</strong> {{ this.firstFormGroup.value.date }}</div>
+	 <div> <strong>Gender:</strong> {{ this.firstFormGroup.value?.gender=="0"?"Male":"Female" }}</div>
+	 <div> <strong>Birth Date Image:</strong> <img class="img"  [src]="path(this.secondFormGroup.value.birth?.value)" ></div>
+   <div> <strong>National Id Image:</strong> <img class="img"  [src]="path(this.secondFormGroup.value.id?.value)" ></div>
+	</div>
+  
+    <div>
+      <button mat-button matStepperPrevious>Back</button>
+      <button mat-button (click)="stepper.reset()">Reset</button>
+      <button mat-button (click)="submit()">Submit</button>
+    </div>
+  </mat-step>
+</mat-horizontal-stepper>
+</div>
+</div>
+</div>
